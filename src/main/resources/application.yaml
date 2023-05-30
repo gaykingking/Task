@@ -1,0 +1,13 @@
+server:
+  port: 90100
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: YcxRoot!123
+    url: jdbc:mysql://192.168.4.191:3306/transport?serverTimezone=Asia/Shanghai&charset=utf8mb4&useUnicode=true&characterEncoding=utf-8&useSSL=false&useSSL=true&tinyInt1isBit=false&allowMultiQueries=true
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+mybatis:
+  mapper-locations: classpath:/*.xml

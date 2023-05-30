@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ls.dao.TaskMapper">
+    <resultMap id="confineMap" type="com.ls.entity.ConfineDataCheck">
+        <result column="code" property="department_code"/>
+        <result column="dept_code1" property="dept_code1"/>
+        <result column="dept_code2" property="dept_code2"/>
+        <result column="dept_code3" property="dept_code3"/>
+        <result column="dept_code4" property="dept_code4"/>
+        <result column="dept_code5" property="dept_code5"/>
+    </resultMap>
+    <update id="updateConfineDataCheck" parameterType="com.ls.entity.ConfineDataCheck">
+        <foreach collection="set" item="item" separator=";">
+            update confine_data_check set
+            dept_code1=#{item.dept_code1},dept_code2=#{item.dept_code2},dept_code3=#{item.dept_code3},dept_code4=#{item.dept_code4}
+            ,dept_code5=#{item.dept_code5} where department_code=#{item.department_code}
+        </foreach>
+
+    </update>
+    <select id="getDeptCodeByCodes" resultMap="confineMap">
+        select code,dept_code1,dept_code2,dept_code3,dept_code4,dept_code5 from sys_dept1 where code in
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>
